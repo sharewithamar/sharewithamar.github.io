@@ -1,28 +1,98 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Hank Quinlan, Horrible Cop</title>
-	</head>
-	<body>
-		<nav>
-    		<ul>
-        		<li><a href="/">Home</a></li>
-	        	<li><a href="/about">About</a></li>
-        		<li><a href="/cv">CV</a></li>
-        		<li><a href="/blog">Blog</a></li>
-    		</ul>
-		</nav>
-		<div class="container">
-    		<div class="blurb">
-        		<h1>Hi there, I'm Hank Quinlan!</h1>
-				<p>I'm best known as the horrible cop from <em>A Touch of Evil</em> Don't trust me. <a href="/about">Read more about my life...</a></p>
-    		</div><!-- /.blurb -->
-		</div><!-- /.container -->
-		<footer>
-    		<ul>
-        		<li><a href="mailto:hankquinlanhub@gmail.com">email</a></li>
-        		<li><a href="https://github.com/hankquinlan">github.com/hankquinlan</a></li>
-			</ul>
-		</footer>
-	</body>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ben Graham Intrinsic Calculator</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Ben Graham Intrinsic Value Calculator for India</a>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <p class="lead">
+         <h6>
+          This calculator is built based on the learnings from <a href="https://www.getmoneyrich.com/stock-price-valuation-intrinsic-value/">Get money Rich blog</a> Written by <cite title="Source Title">Mr.Mani</cite>
+        </h6>
+          </p>
+          <div class="row">
+        <div class="col-md-6 text-center">
+            <form id="ivForm">
+                <div class="form-group row">
+                  <label for="currentEps" class="col-md-6 col-form-label">Current year EPS</label>
+                  <div class="col-md-6">
+                      <input type="text" id="currentEps"  required name="currentEps" class="form-control" placeholder="Enter Current EPS">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="expectedGrowth" class="col-md-6 col-form-label">Expected Growth Rate in next 5 Years%</label>
+                    <div class="col-md-6">
+                        <input type="text" id="expectedGrowth" name="expectedGrowth" class="form-control" placeholder="Expected Growth Rate in next 5 Years%">
+                      </div>
+                </div>
+                <div class="form-group row">
+                    <label for="govtYield" class="col-md-6 col-form-label">10 Year Indian Government Bond Yield (%)</label>
+                    <div class="col-md-6">
+                        <input type="text" id="govtYield" name="govtYield" class="form-control" placeholder="10 Year Indian Government Bond Yield (%)">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            <a href="https://countryeconomy.com/bonds/india">Get Current 10 year Indian government bond value from here</a>
+                          </small>
+                      </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Calculate</button>
+                  </div>
+                </div>
+              </form>
+              <div class="alert" id="actual" role="alert">
+                </div>
+                <div class="alert" id="safety" role="alert">
+                </div>
+        </div>
+        <div class="col-md-6">
+            <img src="./iv.png" class="img-fluid" alt="Responsive image">
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+
+    <script>
+
+        document.querySelector('#ivForm').addEventListener('submit', (e) => {
+      e.preventDefault()
+      var eps=e.target.elements.currentEps.value;
+      var growth=e.target.elements.expectedGrowth.value;
+      var govtYield=e.target.elements.govtYield.value;
+
+       var iv=eps*(8.5+2*growth)*7.9/govtYield;
+       document.querySelector('#actual').textContent = "Intrinsic Value is: "+"   " +iv.toFixed(2);
+       document.querySelector('#safety').textContent = "With margin of safety 2/3, Intrinsic value would be:"+"  "+(2/3*iv).toFixed(2);
+       document.querySelector('#actual').classList.add('alert-primary')
+       document.querySelector('#safety').classList.add('alert-success')
+
+  })
+      </script>
+  </body>
+
 </html>
