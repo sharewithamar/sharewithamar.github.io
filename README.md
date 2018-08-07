@@ -1,2 +1,2 @@
 # sharewithamar.github.io
-Value investment Learnings
+Ben Graham Intrinsic Value calculator for India
